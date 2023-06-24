@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace EcommerceWebApi.Repository
 {
-    public class OrderRepository
+    public class OrderRepository: IOrderRepository
     {
         private readonly EcommerceDbContext _dbContext;
 
@@ -41,6 +41,9 @@ namespace EcommerceWebApi.Repository
             var order = await _dbContext.Orders.FindAsync(orderId);
             _dbContext.Orders.Remove(order);
             await _dbContext.SaveChangesAsync();
+        }
+        public async Task<bool?> OrderExistsAsync(int orderId){
+            return await _dbContext.Orders?.AnyAsync(e => e.Id == orderId);
         }
     }
 

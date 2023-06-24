@@ -9,6 +9,7 @@ namespace EcommerceWebApi.Repository
         Task<Order> CreateOrderAsync(Order order);
         Task UpdateOrderAsync(Order order);
         Task DeleteOrderAsync(int orderId);
+        Task<bool?> OrderExistsAsync(int orderId);
     }
 
     public interface IOrderItemRepository
