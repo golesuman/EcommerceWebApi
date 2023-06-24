@@ -85,7 +85,7 @@ namespace EcommerceWebApi.Controllers
             return NoContent();
         }
 
-        private bool OrderExists(int id)
+        private Task<bool?> OrderExists(int id)
         {
             return _orderRepository.OrderExistsAsync(id);
         }
